@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8nivqxdu5tdq"]
+
+[ext_resource type="Texture2D" uid="uid://bldrnbb6usnny" path="res://assets/player.png" id="1_bndt6"]
+[ext_resource type="Script" path="res://Player.gd" id="1_wge51"]
+[ext_resource type="PackedScene" uid="uid://dti78r6nqv5py" path="res://bullet.tscn" id="3_eq5pc"]
+[ext_resource type="PackedScene" uid="uid://gi6pvjmtdxes" path="res://boss.tscn" id="4_mn4a5"]
+[ext_resource type="PackedScene" uid="uid://bw4srwrg6jp07" path="res://boss_bullet.tscn" id="5_xplyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekbs1"]
+size = Vector2(32, 32)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(520, 582)
+script = ExtResource("1_wge51")
+bullet_scene = ExtResource("3_eq5pc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_bndt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_ekbs1")
+
+[node name="HealthBar" type="ProgressBar" parent="Player"]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(60, 10)
+offset_left = -16.0
+offset_top = -30.0
+offset_right = 44.0
+offset_bottom = -3.0
+scale = Vector2(0.540868, 0.492895)
+value = 100.0
+show_percentage = false
+
+[node name="Boss" parent="." instance=ExtResource("4_mn4a5")]
+position = Vector2(516, 277)
+boss_bullet_scene = ExtResource("5_xplyn")
