@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw4srwrg6jp07"]
+
+[ext_resource type="Script" path="res://boss_bullet.gd" id="1_adg6a"]
+[ext_resource type="Texture2D" uid="uid://baiocriwoqait" path="res://assets/missile2.png" id="1_guseq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trjcg"]
+size = Vector2(4, 12)
+
+[node name="BossBullet" type="Area2D"]
+script = ExtResource("1_adg6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_guseq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_trjcg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
